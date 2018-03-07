@@ -39,14 +39,14 @@ class Token():
 
     # when to start the crowdsale
     # To-Do: Update this block time
-    block_sale_start = 875000
+    block_sale_start = 1300
 
     # when to end the initial limited round - after the first 24 hours
     # To-Do: Update the start block time
-    limited_round_end = block_sale_start + 5760
+    limited_round_end = 1300 + 5760
 
     # when to end the tokensale - 30 days after the end of limited round
-    block_sale_end = limited_round_end + 172800
+    block_sale_end = 1300 + 5760 + 172800
 
 
     def crowdsale_available_amount(self):
