@@ -150,8 +150,10 @@ class Crowdsale():
         # registered with the contract for KYC regulations
         # this is not required for operation of the contract
 
-#        status = self.get_kyc_status(attachments.sender_addr, storage)
-        if not self.get_kyc_status(attachments.sender_addr, storage):
+        status = self.get_kyc_status(attachments.sender_addr, storage)
+        print(status)
+        if not status:
+            print("not KYC approved")
             return False
 
 #        print("Will check can exchange") # @TODO [Compiler FIX] removing this print statement breaks the execution of this method in v 0.2.0 and below
