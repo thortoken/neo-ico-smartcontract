@@ -119,14 +119,9 @@ def can_exchange(ctx, attachments, verify_only):
     """
 
     # if you are accepting gas, use this
-    if attachments[3] == 0:
-       print("no gas attached")
+    if attachments[2] == 0 and attachments[3] == 0: 
+       print("no neo or gas attached")
        return False
-
-    # if youre accepting neo, use this
-
-    if attachments[2] == 0:
-        return False
 
     # the following looks up whether an address has been
     # registered with the contract for KYC regulations
@@ -140,7 +135,7 @@ def can_exchange(ctx, attachments, verify_only):
     amount_requested = attachments[2] * TOKENS_PER_NEO / 100000000
 
     # this would work for accepting gas
-    # amount_requested = attachments.gas_attached * token.tokens_per_gas / 100000000
+    amount_requested += attachments[3] * TOKENS_PER_GAS / 100000000
 
     exchange_ok = calculate_can_exchange(ctx, amount_requested, attachments[1], verify_only)
 
@@ -185,46 +180,76 @@ def calculate_can_exchange(ctx, amount, address, verify_only):
         return False
 
     if height > BLOCK_SALE_END:
+        print("token sale has ended")
         return False
+
+    # Determine which public round we are on    
+    subfix = ROUND_1_KEY
+
+    if new_amount > AFTER_ROUND_1_AMOUNT:
+        subfix = ROUND_2_KEY
+
+    if new_amount > AFTER_ROUND_2_AMOUNT:
+        subfix = ROUND_3_KEY
+
+    addr_key = concat(address, subfix)
 
     # if we are in free round, any amount
     if height > LIMITED_ROUND_END:
-        print("token sale has ended")
+        print("Free for all, accept as much as possible")
+        
+        exchanged_amount = Get(ctx, addr_key)
+
+        if not exchanged_amount:
+            Put(ctx, addr_key, amount)
+        else:
+            new_exchanged_amount = exchanged_amount + amount
+            Put(ctx, addr_key, new_exchanged_amount)
+
         return True
+
 
     # check amount in limited round
     if amount <= MAX_EXCHANGE_LIMITED_ROUND:
 
-        # check if they have already exchanged in the limited round
-        r1key = concat(address, LIMITED_ROUND_KEY)
-        has_exchanged = Get(ctx, r1key)
+        exchanged_amount = Get(ctx, addr_key)
 
         # if not, then save the exchange for limited round
-        if not has_exchanged:
+        if not exchanged_amount:
             # note that this method can be invoked during the Verification trigger, so we have the
             # verify_only param to avoid the Storage.Put during the read-only Verification trigger.
             # this works around a "method Neo.Storage.Put not found in ->" error in InteropService.py
             # since Verification is read-only and thus uses a StateReader, not a StateMachine
             if not verify_only:
-                Put(ctx, r1key, True)
+                Put(ctx, r1key, exchanged_amount)
             return True
+        else:
+            new_exchanged_amount = exchanged_amount + amount
 
+            if new_exchanged_amount <= MAX_EXCHANGE_LIMITED_ROUND:
+                if not verify_only:
+                    Put(ctx, r1key, new_exchanged_amount)
+                return True
+
+        print("already exchanged in limited round")
         return False
 
+    print("too much for limited round")
     return False
 
 # def airdrop_tokens(ctx, amount, address):
 #     """
 
-#     :param to_addr:single address where token should be airdropped to
 #     :param amount:amount of token to be airdropped
-#     :param token:Token A token object with your ICO settings
+#     :param to_addr:single address where token should be airdropped to
 #     :return:
 #         int: The number of tokens dropped in this invocation
 #     """
 #     token_dropped = 0;
 
 #     if CheckWitness(TOKEN_OWNER):
+
+#         attachments = get_asset_attachments()  # [receiver, sender, neo, gas]
 
 #         current_in_circulation = Get(ctx, TOKEN_CIRC_KEY)
 
@@ -234,16 +259,13 @@ def calculate_can_exchange(ctx, amount, address, verify_only):
 #             print("Amount in list would overflow the total supply")
 #             return False
 
-#         sender = GetExecutingScriptHash()
-
-#         Put(to_addr, amount)
+#         Put(attachments[0], amount)
 
 #         # dispatch transfer event
-#         OnTransfer(sender, to_addr, amount)
+#         OnTransfer(attachments[], attachments[], amount)
 #         token_dropped = amount
 
 #         # update the in circulation amount
-#         result = add_to_circulation(ctx, exchanged_tokens)
-#         token.add_to_circulation(amount, storage)
+#         result = add_to_circulation(ctx, amount)
 
 #     return token_dropped

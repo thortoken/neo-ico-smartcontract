@@ -77,6 +77,9 @@ def Main(operation, args):
         elif operation == 'crowdsale_available':
             return crowdsale_available_amount(ctx)
 
+        # elif operation == 'airdrop':
+        #     return airdrop_tokens(ctx)
+
         elif operation == 'get_attachments':
             return get_asset_attachments()
 

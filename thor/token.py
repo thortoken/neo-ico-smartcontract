@@ -22,7 +22,7 @@ TOKEN_INITIAL_AMOUNT = 80000000 * 100000000  # 2.5m to owners * 10^8
 
 AFTER_ROUND_1_AMOUNT = 90000000 * 100000000  # After round 1 of public sale amount (25% bonus)
 
-AFTER_ROUND_2_AMOUNT =95000000 * 100000000  # After round 2 of public sale amount (10% bonus)
+AFTER_ROUND_2_AMOUNT = 95000000 * 100000000  # After round 2 of public sale amount (10% bonus)
 
 # for now assume 1 dollar per token, and one neo = 100 dollars * 10^8
 TOKENS_PER_NEO = 100 * 100000000
@@ -45,7 +45,11 @@ BLOCK_SALE_END = 1300 + 172800
 
 KYC_KEY = b'kyc_ok'
 
-LIMITED_ROUND_KEY = b'r1'
+ROUND_1_KEY = b'r1'
+
+ROUND_2_KEY = b'r2'
+
+ROUND_3_KEY = b'r3'
 
 
 def crowdsale_available_amount(ctx):
