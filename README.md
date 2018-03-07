@@ -37,6 +37,13 @@ python3.5 compile.py
 
 This will compile your template to `ico_smart_contract.avm`
 
+#### Deployment
+
+In neo-python prompt:
+```neo-python
+import contract path_to/neo-ico-smartcontract/ico_smart_contract.avm 070202 02 True True
+```
+
 
 #### Current Status: In Progress
 
