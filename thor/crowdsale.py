@@ -221,14 +221,14 @@ def calculate_can_exchange(ctx, amount, address, verify_only):
             # this works around a "method Neo.Storage.Put not found in ->" error in InteropService.py
             # since Verification is read-only and thus uses a StateReader, not a StateMachine
             if not verify_only:
-                Put(ctx, r1key, exchanged_amount)
+                Put(ctx, addr_key, exchanged_amount)
             return True
         else:
             new_exchanged_amount = exchanged_amount + amount
 
             if new_exchanged_amount <= MAX_EXCHANGE_LIMITED_ROUND:
                 if not verify_only:
-                    Put(ctx, r1key, new_exchanged_amount)
+                    Put(ctx, addr_key, new_exchanged_amount)
                 return True
 
         print("already exchanged in limited round")

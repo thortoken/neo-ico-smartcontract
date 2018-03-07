@@ -35,13 +35,13 @@ MAX_EXCHANGE_LIMITED_ROUND = 20 * 100 * 100000000
 
 # when to start the crowdsale
 # To-Do: Update this block time
-BLOCK_SALE_START = 1300
+BLOCK_SALE_START = 2500
 
 # when to end the initial limited round
-LIMITED_ROUND_END = 1300 + 5760
+LIMITED_ROUND_END = 2500 + 5760
 
 # when to end the tokensale - 30 days after the end of limited round
-BLOCK_SALE_END = 1300 + 172800
+BLOCK_SALE_END = 2500 + 172800
 
 KYC_KEY = b'kyc_ok'
 
