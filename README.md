@@ -10,21 +10,14 @@
 
 #### Requirements
 
-Usage requires Python 3.6.
+Usage requires Python 3.4 or 3.5.
 
 #### Installation
 
 Clone the repository and navigate into the project directory. 
-Make a Python 3.6 virtual environment and activate it via
+Make a Python 3.5 virtual environment and activate it via
 
-```shell
-python3.6 -m venv venv
-source venv/bin/activate
-```
-
-or to explicitly install Python 3.6 via
-
-    virtualenv -p /usr/local/bin/python3.6 venv
+    virtualenv -p /usr/local/bin/python3.5 venv
     source venv/bin/activate
 
 Then install the requirements via
@@ -38,9 +31,7 @@ pip install -r requirements.txt
 The template may be compiled as follows
 
 ```python
-from boa.compiler import Compiler
-
-Compiler.load_and_save('ico_smart_contract.py')
+python3.5 compile.py
 ```
 
 
