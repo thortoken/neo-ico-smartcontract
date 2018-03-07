@@ -1,6 +1,6 @@
 <p align="center">
   <img
-    src="https://cdn1.telesco.pe/file/sOZyAXvBwCGIQbs-hTwVGmMXIN5_TiAefurFb53ARS9E3DbSCRXOHU8fttnjaR4uZmMLAj3y9lygLFQwP-oM9Lh6N-qbajJBiAi-ObrGmx8Y6HQc7inzwvnBnR51NbRTc70892e0_AwGhenJG7CVs35tbjjcUX0ubIB0iBYPaTQUOktcsYJU6eEsvqSCDZt0BpzHlQijHhVr69G99zwih_o_fJl8ctoeu8YDxfDEF6hHpeLg7lEQV3fvuHjQ0p_2v9JPFZvVZ_70iyo3E3UR3lmpymecokcvCvcWVWFSCgtVNqAdCaiw245IERDnMCb5Qit7kIl-xOoA9I4abgM37Q.jpg"
+    src="https://assets.brandfolder.com/p429iy-cjzaz4-epdy6e/v/1550884/view.png"
     width="125px;">
 </p>
 <h3 align="center">Thor ICO Smart Contract</h3>
