@@ -10,15 +10,24 @@
 
 #### Requirements
 
-Usage requires Python 3.4 or 3.5.
+Usage requires Python 3.6+
 
 #### Installation
 
 Clone the repository and navigate into the project directory. 
-Make a Python 3.5 virtual environment and activate it via
+Make a Python 3 virtual environment and activate it via
 
-    virtualenv -p /usr/local/bin/python3.5 venv
+```shell
+python3 -m venv venv
+source venv/bin/activate
+```
+
+or to explicitly install Python 3.6 via
+
+```shell
+    virtualenv -p /usr/local/bin/python3.6 venv
     source venv/bin/activate
+```
 
 Then install the requirements via
 
@@ -31,7 +40,7 @@ pip install -r requirements.txt
 The template may be compiled as follows
 
 ```python
-python3.5 compile.py
+python3 compile.py
 ```
 
 
