@@ -10,21 +10,21 @@
 
 #### Requirements
 
-Usage requires Python 3.4 or 3.5.
+Usage requires Python 3.6.
 
 #### Installation
 
 Clone the repository and navigate into the project directory. 
-Make a Python 3 virtual environment and activate it via
+Make a Python 3.6 virtual environment and activate it via
 
 ```shell
-python3 -m venv venv
+python3.6 -m venv venv
 source venv/bin/activate
 ```
 
-or to explicitly install Python 3.5 via
+or to explicitly install Python 3.6 via
 
-    virtualenv -p /usr/local/bin/python3.5 venv
+    virtualenv -p /usr/local/bin/python3.6 venv
     source venv/bin/activate
 
 Then install the requirements via
