@@ -9,23 +9,18 @@ OnTransfer = RegisterAction('transfer','from', 'to', 'amount')
 
 class Airdrop():
 
-    tokens_per_drop = 1
-
-
-    def airdrop_tokens(self, args, token:Token):
+    def airdrop_tokens(self, to_addr, amount, token:Token):
         """
 
-        :param args:list a list of addresses to airdrop to
+        :param to_addr:single address where token should be airdropped to
+        :param amount:amount of token to be airdropped
         :param token:Token A token object with your ICO settings
         :return:
             int: The number of tokens dropped in this invocation
         """
-
-        ok_count = 0
+        token_dropped = 0;
 
         if CheckWitness(token.owner):
-
-            amount = len(args)
 
             storage = StorageAPI()
 
@@ -39,19 +34,13 @@ class Airdrop():
 
             sender = GetExecutingScriptHash()
 
-            # Neo only supports 16 elements in an array, but by the time
-            # you have 16 addresses in your invoke, you'll be in excess 
-            # of 10 GAS anyway. 6 elements seems to work for < 10 GAS
-            for address in args:
-                if len(address) == 20:
+            storage.put(to_addr, amount)
 
-                    storage.put(address, self.tokens_per_drop)
-
-                    # dispatch transfer event
-                    OnTransfer(sender, address, self.tokens_per_drop)
-                    ok_count += self.tokens_per_drop
+            # dispatch transfer event
+            OnTransfer(sender, to_addr, amount)
+            token_dropped = amount
 
             # update the in circulation amount
-            token.add_to_circulation(ok_count, storage)
+            token.add_to_circulation(amount, storage)
 
-        return ok_count
+        return token_dropped

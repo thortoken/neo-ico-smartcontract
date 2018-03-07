@@ -20,11 +20,13 @@ class Token():
 
     total_supply = 100000000 * 100000000  # 100m total supply * 10^8 ( decimals)
 
-    initial_amount = 80000000 * 100000000  # 50m to owners * 10^8
+    initial_amount = 0 * 100000000  # starting amount
 
-    after_round_1_amount = 90000000 * 100000000  # After round 1 of public sale amount (25% bonus)
+    after_round_1_amount = 80000000 * 100000000  # After round 1 of public sale amount (25% bonus)
 
-    after_round_2_amount = 95000000 * 100000000  # After round 2 of public sale amount (10% bonus)
+    after_round_2_amount = 85000000 * 100000000  # After round 2 of public sale amount (10% bonus)
+
+    crowdsale_end_amount = 90000000 * 100000000  # After round 3 of public sale amount (no bonus)
 
     # for now assume 1 dollar per token, and one neo = 120 dollars * 10^8
     tokens_per_neo = 120 * 100000000
@@ -41,7 +43,10 @@ class Token():
 
     # when to end the initial limited round - after the first 24 hours
     # To-Do: Update the start block time
-    limited_round_end = 875000 + 5760
+    limited_round_end = block_sale_start + 5760
+
+    # when to end the tokensale - 30 days after the end of limited round
+    block_sale_end = limited_round_end + 172800
 
 
     def crowdsale_available_amount(self):
@@ -53,7 +58,7 @@ class Token():
 
         in_circ = storage.get(self.in_circulation_key)
 
-        available = self.total_supply - in_circ
+        available = self.crowdsale_end_amount - in_circ
 
         return available
 

@@ -21,13 +21,14 @@ setup(
     # https://packaging.python.org/en/latest/single_source_version.html
     version='1.0',
 
-    description='Thor Token',
+    description='Thor Token ICO NEP-5 token sale smart contract',
+    long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/neonexchange/neo-ico-template',
+    url='https://github.com/thortoken/neo-ico-smartcontract',
 
     # Author details
-    author='Thor Token',
+    author='Leo Rong',
     author_email='leo@thortoken.com',
 
     # Choose your license
@@ -55,7 +56,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords='Thor NEP5 ICO Token NEO .avm blockchain development dApp',
+    keywords='Thor THOR NEP5 ICO Token NEO .avm blockchain development dApp',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
@@ -63,7 +64,7 @@ setup(
 
     # Alternatively, if you want to distribute just a my_module.py, uncomment
     # this:
-    py_modules=["nex"],
+    py_modules=["thor"],
 
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed. For an analysis of "install_requires" vs pip's

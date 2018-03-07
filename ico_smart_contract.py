@@ -18,6 +18,7 @@ from thor.common.txio import Attachments,get_asset_attachments
 from thor.token.mytoken import Token
 from thor.token.nep5 import NEP5Handler
 from thor.token.crowdsale import Crowdsale
+from thor.token.airdrop import Airdrop
 
 
 def Main(operation, args):
@@ -90,6 +91,13 @@ def Main(operation, args):
 
             if operation == 'crowdsale_available':
                 return token.crowdsale_available_amount()
+
+            # the following are handled by airdrop
+
+            airdrop = Airdrop()
+
+            if operation == 'airdrop_tokens':
+                return airdrop.airdrop_tokens(args, token)
 
             return 'unknown operation'
 

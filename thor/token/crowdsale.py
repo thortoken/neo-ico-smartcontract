@@ -201,34 +201,64 @@ class Crowdsale():
 
         new_amount = current_in_circulation + amount
 
-        if new_amount > token.total_supply:
-            print("amount greater than total supply")
+        if new_amount > token.crowdsale_end_amount:
+            print("amount greater than crowdsale end amount")
             return False
 
-        print("trying to calculate height????")
+        print("Has token sale started???")
         if height < token.block_sale_start:
-            print("sale not begun yet")
+            print("token sale has not begun yet")
             return False
+
+        print("Has token sale ended???")
+        if height > token.block_sale_end:
+            print("token sale has ended")
+            return False
+
+        # Determine which public round we are on
+        subfix = self.round_1_key
+
+        if new_amount > token.after_round_1_amount:
+            subfix = self.round_2_key
+
+        if new_amount > token.after_round_2_amount:
+            subfix = self.round_3_key
+
+        addr_key = concat(address, subfix)
 
         # if we are in free round, any amount
+        print("During limited round???")
         if height > token.limited_round_end:
             print("Free for all, accept as much as possible")
+
+            exchanged_amount = storage.get(addr_key)
+
+            if not exchanged_amount:
+                storage.put(addr_key, amount)
+            else:
+                new_exchanged_amount = exchanged_amount + amount
+                storage.put(addr_key, new_exchanged_amount)
+
             return True
 
 
         # check amount in limited round
-
         if amount <= token.max_exchange_limited_round:
 
-            # check if they have already exchanged in the limited round
-            r1key = concat(address, self.limited_round_key)
+            exchanged_amount = storage.get(addr_key)
 
-            has_exchanged = storage.get(r1key)
-
-            # if not, then save the exchange for limited round
-            if not has_exchanged:
-                storage.put(r1key, True)
+            # if not, then save the exchange amount for limited round
+            if not exchanged_amount:
+                storage.put(addr_key, amount)
                 return True
+            else:
+                new_exchanged_amount = exchanged_amount + amount
+
+                # if yes, check if the new amount exceed the round limit
+                if new_exchanged_amount <= token.max_exchange_limited_round:
+                    storage.put(addr_key, new_exchanged_amount)
+                    return True
+
 
             print("already exchanged in limited round")
             return False
