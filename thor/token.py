@@ -12,13 +12,13 @@ TOKEN_DECIMALS = 8
 
 # This is the script hash of the address for the owner of the token
 # This can be found in ``neo-python`` with the walet open, use ``wallet`` command
-TOKEN_OWNER = b'S\xefB\xc8\xdf!^\xbeZ|z\xe8\x01\xcb\xc3\xac/\xacI)'
+TOKEN_OWNER = b'#\xba\'\x03\xc52c\xe8\xd6\xe5"\xdc2 39\xdc\xd8\xee\xe9'
 
 TOKEN_CIRC_KEY = b'in_circulation'
 
 TOKEN_TOTAL_SUPPLY = 100000000 * 100000000  # 10m total supply * 10^8 ( decimals)
 
-TOKEN_INITIAL_AMOUNT = 80000000 * 100000000  # 2.5m to owners * 10^8
+TOKEN_INITIAL_AMOUNT = 80000000 * 100000000  # 80m to owners * 10^8
 
 AFTER_ROUND_1_AMOUNT = 90000000 * 100000000  # After round 1 of public sale amount (25% bonus)
 

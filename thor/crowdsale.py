@@ -183,89 +183,60 @@ def calculate_can_exchange(ctx, amount, address, verify_only):
         print("token sale has ended")
         return False
 
-    # Determine which public round we are on    
-    subfix = ROUND_1_KEY
-
-    if new_amount > AFTER_ROUND_1_AMOUNT:
-        subfix = ROUND_2_KEY
-
-    if new_amount > AFTER_ROUND_2_AMOUNT:
-        subfix = ROUND_3_KEY
-
-    addr_key = concat(address, subfix)
-
     # if we are in free round, any amount
     if height > LIMITED_ROUND_END:
-        print("Free for all, accept as much as possible")
-        
-        exchanged_amount = Get(ctx, addr_key)
-
-        if not exchanged_amount:
-            Put(ctx, addr_key, amount)
-        else:
-            new_exchanged_amount = exchanged_amount + amount
-            Put(ctx, addr_key, new_exchanged_amount)
-
+        print("limited round ended, free for all now")
         return True
-
 
     # check amount in limited round
     if amount <= MAX_EXCHANGE_LIMITED_ROUND:
 
-        exchanged_amount = Get(ctx, addr_key)
+        # check if they have already exchanged in the limited round
+        r1key = concat(address, LIMITED_ROUND_KEY)
+        has_exchanged = Get(ctx, r1key)
 
         # if not, then save the exchange for limited round
-        if not exchanged_amount:
+        if not has_exchanged:
             # note that this method can be invoked during the Verification trigger, so we have the
             # verify_only param to avoid the Storage.Put during the read-only Verification trigger.
             # this works around a "method Neo.Storage.Put not found in ->" error in InteropService.py
             # since Verification is read-only and thus uses a StateReader, not a StateMachine
             if not verify_only:
-                Put(ctx, addr_key, exchanged_amount)
+                Put(ctx, r1key, True)
             return True
-        else:
-            new_exchanged_amount = exchanged_amount + amount
 
-            if new_exchanged_amount <= MAX_EXCHANGE_LIMITED_ROUND:
-                if not verify_only:
-                    Put(ctx, addr_key, new_exchanged_amount)
-                return True
-
-        print("already exchanged in limited round")
         return False
 
-    print("too much for limited round")
     return False
 
-# def airdrop_tokens(ctx, amount, address):
-#     """
+def airdrop_tokens(ctx, amount, address):
+    """
 
-#     :param amount:amount of token to be airdropped
-#     :param to_addr:single address where token should be airdropped to
-#     :return:
-#         int: The number of tokens dropped in this invocation
-#     """
-#     token_dropped = 0;
+    :param amount:amount of token to be airdropped
+    :param to_addr:single address where token should be airdropped to
+    :return:
+        bool: Whether the airdrop was successful
+    """
+    if CheckWitness(TOKEN_OWNER):
 
-#     if CheckWitness(TOKEN_OWNER):
+        current_in_circulation = Get(ctx, TOKEN_CIRC_KEY)
 
-#         attachments = get_asset_attachments()  # [receiver, sender, neo, gas]
+        new_amount = current_in_circulation + amount 
 
-#         current_in_circulation = Get(ctx, TOKEN_CIRC_KEY)
+        if new_amount > TOKEN_TOTAL_SUPPLY:
+            print("Amount in list would overflow the total supply")
+            return False
 
-#         new_amount = current_in_circulation + amount 
+        current_balance = Get(ctx, address)
 
-#         if new_amount > TOKEN_TOTAL_SUPPLY:
-#             print("Amount in list would overflow the total supply")
-#             return False
+        new_total = amount + current_balance
+        
+        Put(ctx, address, new_total)
 
-#         Put(attachments[0], amount)
+        # update the in circulation amount
+        result = add_to_circulation(ctx, amount)
 
-#         # dispatch transfer event
-#         OnTransfer(attachments[], attachments[], amount)
-#         token_dropped = amount
+        # dispatch transfer event
+        OnTransfer(TOKEN_OWNER, address, amount)
 
-#         # update the in circulation amount
-#         result = add_to_circulation(ctx, amount)
-
-#     return token_dropped
+    return False
