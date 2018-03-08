@@ -120,10 +120,10 @@ def deploy():
         Put(ctx, TOKEN_OWNER, TOKEN_INITIAL_AMOUNT)
         Put(ctx, ICO_IN_PROGRESS_KEY, True)
 
-        if not add_to_ico_token_sold(ctx, TOKEN_INITIAL_AMOUNT):
-            return False
+        add_to_ico_token_sold(ctx, 0)
+        add_to_circulation(ctx, TOKEN_INITIAL_AMOUNT)
 
-        return add_to_circulation(ctx, TOKEN_INITIAL_AMOUNT)
+        return True
 
     return False
 

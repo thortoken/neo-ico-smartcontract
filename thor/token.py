@@ -18,7 +18,7 @@ TOKEN_CIRC_KEY = b'in_circulation'
 
 TOKEN_TOTAL_SUPPLY = 100000000 * 100000000  # 100m total supply * 10^8 (decimals)
 
-TOKEN_INITIAL_AMOUNT = 0 * 100000000  # 0M to owners * 10^8 
+TOKEN_INITIAL_AMOUNT = 50000000 * 100000000  # 50M to owners * 10^8 
 
 # for now assume 1 dollar per token, and one neo = 100 dollars * 10^8
 TOKENS_PER_NEO = 110 * 100000000
@@ -32,13 +32,13 @@ TOKENS_PER_GAS_SECOND_ROUND = 37 * 100000000
 
 # when to start the crowdsale
 # To-Do: Update this block time
-BLOCK_SALE_START = 2600
+BLOCK_SALE_START = 2920
 
 # when to end the initial limited round 24 hours
-LIMITED_ROUND_END = 2600 + 5760
+LIMITED_ROUND_END = 2920 + 5760
 
 # when to end the tokensale - 30 days after the end of limited round
-BLOCK_SALE_END = 2600 + 172800
+BLOCK_SALE_END = 2920 + 172800
 
 KYC_KEY = b'kyc_ok'
 
@@ -98,7 +98,8 @@ def get_circulation(ctx):
     :return:
         int: Total amount in circulation
     """
-    return Get(ctx, TOKEN_CIRC_KEY)
+    in_circ = Get(ctx, TOKEN_CIRC_KEY)
+    return in_circ
 
 
 def add_to_ico_token_sold(ctx, amount):
@@ -126,4 +127,5 @@ def get_ico_token_sold(ctx):
     :return:
         int: Total amount in ico_token_sold
     """
-    return Get(ctx, ICO_TOKEN_SOLD_KEY)
+    current_sold = Get(ctx, ICO_TOKEN_SOLD_KEY)
+    return current_sold

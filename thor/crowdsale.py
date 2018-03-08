@@ -97,12 +97,12 @@ def perform_exchange(ctx):
     token_to_gas = TOKENS_PER_GAS
 
     if current_ico_sold <= AFTER_SECOND_ROUND_AMOUNT:
-        token_to_neo = TOKENS_PER_NEO_LIMITED_ROUND
-        token_to_gas = TOKENS_PER_GAS_LIMITED_ROUND
-
-    if current_ico_sold <= AFTER_LIMITED_ROUND_AMOUNT:
         token_to_neo = TOKENS_PER_NEO_SECOND_ROUND
         token_to_gas = TOKENS_PER_GAS_SECOND_ROUND
+
+    if current_ico_sold <= AFTER_LIMITED_ROUND_AMOUNT:
+        token_to_neo = TOKENS_PER_NEO_LIMITED_ROUND
+        token_to_gas = TOKENS_PER_GAS_LIMITED_ROUND
 
     # calculate the amount of tokens the attached neo will earn
     exchanged_tokens = attachments[2] * token_to_neo / 100000000
@@ -259,12 +259,8 @@ def airdrop_tokens(ctx, args):
 
             # First parameter is address
             address = args[0]
-
-            if not get_kyc_status(ctx, address):
-                return False
-
             # Second parameter is amount
-            amount = args[1] * 100000000
+            amount = args[1]
 
             current_in_circulation = Get(ctx, TOKEN_CIRC_KEY)
 
@@ -290,4 +286,6 @@ def airdrop_tokens(ctx, args):
 
         return False
 
+
+    print("Must be owner to airdrop tokens")
     return False
