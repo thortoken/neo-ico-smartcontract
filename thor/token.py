@@ -83,9 +83,6 @@ def add_to_circulation(ctx, amount):
 
     current_supply = Get(ctx, TOKEN_CIRC_KEY)
 
-    if not current_supply:
-        current_supply = 0
-
     current_supply += amount
     Put(ctx, TOKEN_CIRC_KEY, current_supply)
     return True
@@ -111,13 +108,8 @@ def add_to_ico_token_sold(ctx, amount):
 
     current_sold = Get(ctx, ICO_TOKEN_SOLD_KEY)
 
-    if not current_sold:
-        current_sold = 0
-
     current_sold += amount
-
     Put(ctx, ICO_TOKEN_SOLD_KEY, current_sold)
-
     return True
 
 def get_ico_token_sold(ctx):

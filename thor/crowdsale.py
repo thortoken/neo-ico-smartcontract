@@ -115,8 +115,8 @@ def perform_exchange(ctx):
     Put(ctx, attachments[1], new_total)
 
     # update the token sold amount and in circulation amount
-    add_to_ico_token_sold(ctx, exchanged_tokens)
-    add_to_circulation(ctx, exchanged_tokens)
+    result = add_to_ico_token_sold(ctx, exchanged_tokens)
+    result = add_to_circulation(ctx, exchanged_tokens)
 
     # dispatch transfer event
     OnTransfer(attachments[0], attachments[1], exchanged_tokens)
@@ -254,6 +254,8 @@ def airdrop_tokens(ctx, args):
         bool: Whether the airdrop was successful
     """
     if CheckWitness(TOKEN_OWNER):
+
+        print("Is Owner")
 
         if len(args) == 2:
 

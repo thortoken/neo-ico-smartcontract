@@ -92,7 +92,7 @@ def Main(operation, args):
         elif operation == 'crowdsale_available':
             return crowdsale_available_amount(ctx)
 
-        elif operation == 'airdrop':
+        elif operation == 'airdrop_tokens':
             return airdrop_tokens(ctx, args)
 
         elif operation == 'get_attachments':
@@ -120,8 +120,8 @@ def deploy():
         Put(ctx, TOKEN_OWNER, TOKEN_INITIAL_AMOUNT)
         Put(ctx, ICO_IN_PROGRESS_KEY, True)
 
-        add_to_ico_token_sold(ctx, 0)
-        add_to_circulation(ctx, TOKEN_INITIAL_AMOUNT)
+        result = add_to_ico_token_sold(ctx, 0)
+        result = add_to_circulation(ctx, TOKEN_INITIAL_AMOUNT)
 
         return True
 
