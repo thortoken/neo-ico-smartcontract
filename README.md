@@ -5,7 +5,8 @@
 </p>
 <h3 align="center">Thor ICO Smart Contract</h3>
 <p align="center">Thor Token Offical ICO Smart Contract.</p>
-<p align="center">Based of Neo ICO Template by NEX team - https://github.com/neonexchange/neo-ico-template</p>
+<p align="center">Author: Leo Rong <a href="mailto:leo@thortoken.com" target="_top">leo@thortoken.com</a></p>
+<p align="center">Based of Neo ICO Template by Thomas Saunders of the NEX team - https://github.com/neonexchange/neo-ico-template</p>
 <hr/>
 
 #### Requirements
@@ -105,6 +106,6 @@ In neo-python prompt:
 testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f airdrop ['AaYZVFjjxae4tiXjCepwp7tEAhn4SwF9Nu', 1000]
 ```
 
-#### Current Status: In Progress
+#### Current Status: In Testing
 
-Thor Token engineering team is actively working on the smart contract for both of the upcoming pre-sale & crowd-sale. More information regarding the KYC and Whitelist process will be annouced soon. Please join our Telegram to get the most up to date information about our progress. https://t.me/joinchat/F-UKj1Md5AilZgV9zU0Dwg
+Thor Token team is at the final testing stage of this ICO smart contract. Contract is set to by published on the Testnet 
