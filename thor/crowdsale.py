@@ -24,9 +24,14 @@ def kyc_register(ctx, args):
 
     if CheckWitness(TOKEN_OWNER):
 
+        print("Is owner")
+
         for address in args:
 
+
             if len(address) == 20:
+
+                print("Saving address to kyc")
 
                 kyc_storage_key = concat(KYC_KEY, address)
                 Put(ctx, kyc_storage_key, True)
@@ -78,7 +83,7 @@ def perform_exchange(ctx):
             OnRefund(attachments[1], attachments[2])
         # if you want to exchange gas instead of neo, use this
         if attachments[3] > 0:
-           OnRefund(attachments[1], attachments[3])
+            OnRefund(attachments[1], attachments[3])
 
         return False
 
@@ -120,7 +125,7 @@ def can_exchange(ctx, attachments, verify_only):
 
     # if you are accepting gas, use this
     if attachments[2] == 0 and attachments[3] == 0: 
-       print("no neo or gas attached")
+       print("No neo or gas attached")
        return False
 
     # the following looks up whether an address has been
@@ -129,6 +134,7 @@ def can_exchange(ctx, attachments, verify_only):
 
 #        status = get_kyc_status(attachments.sender_addr, storage)
     if not get_kyc_status(ctx, attachments[1]):
+        print("Not KYC approved")
         return False
 
     # caluclate the amount requested
@@ -205,12 +211,16 @@ def calculate_can_exchange(ctx, amount, address, verify_only):
                 Put(ctx, r1key, True)
             return True
 
+        print("Already contributed in limited round")
         return False
 
+    print("More than limited round max")
     return False
 
-def airdrop_tokens(ctx, amount, address):
+def airdrop_tokens(ctx, args):
     """
+
+    Airdrop Token for privatesale token buyers
 
     :param amount:amount of token to be airdropped
     :param to_addr:single address where token should be airdropped to
@@ -219,24 +229,39 @@ def airdrop_tokens(ctx, amount, address):
     """
     if CheckWitness(TOKEN_OWNER):
 
-        current_in_circulation = Get(ctx, TOKEN_CIRC_KEY)
+        if len(args) == 2:
 
-        new_amount = current_in_circulation + amount 
+            # First parameter is address
+            address = args[0]
 
-        if new_amount > TOKEN_TOTAL_SUPPLY:
-            print("Amount in list would overflow the total supply")
-            return False
+            if not get_kyc_status(ctx, address):
+                return False
 
-        current_balance = Get(ctx, address)
+            # Second parameter is amount
+            amount = args[1] * 100000000
 
-        new_total = amount + current_balance
-        
-        Put(ctx, address, new_total)
+            current_in_circulation = Get(ctx, TOKEN_CIRC_KEY)
 
-        # update the in circulation amount
-        result = add_to_circulation(ctx, amount)
+            new_amount = current_in_circulation + amount 
 
-        # dispatch transfer event
-        OnTransfer(TOKEN_OWNER, address, amount)
+            if new_amount > TOKEN_TOTAL_SUPPLY:
+                print("Amount in list would overflow the total supply")
+                return False
+
+            current_balance = Get(ctx, address)
+
+            new_total = amount + current_balance
+
+            Put(ctx, address, new_total)
+
+            # update the in circulation amount
+            result = add_to_circulation(ctx, amount)
+
+            # dispatch transfer event
+            OnTransfer(TOKEN_OWNER, address, amount)
+
+            return True
+
+        return False
 
     return False

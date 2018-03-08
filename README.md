@@ -46,13 +46,46 @@ python3 compile.py
 
 This will compile your template to `ico_smart_contract.avm`
 
-#### Deployment
+#### Import
 
 In neo-python prompt:
+
 ```neo-python
 import contract path_to/neo-ico-smartcontract/ico_smart_contract.avm 070202 02 True True
 ```
 
+#### Deploy (Owner Check)
+
+In neo-python prompt:
+
+```neo-python
+testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f deploy []
+```
+
+#### Register KYC (Owner Check)
+
+In neo-python prompt:
+
+```neo-python
+testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f crowdsale_register ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y']
+testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f crowdsale_status ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y']
+```
+
+#### Mint Token (KYC Check)
+
+In neo-python prompt:
+
+```neo-python
+testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f mintTokens [] --attach-neo=1
+```
+
+#### Airdrop - For privatesale (Owner Check)
+
+In neo-python prompt:
+
+```neo-python
+testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f airdrop ['AaYZVFjjxae4tiXjCepwp7tEAhn4SwF9Nu', 1000]
+```
 
 #### Current Status: In Progress
 

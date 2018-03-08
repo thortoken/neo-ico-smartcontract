@@ -16,13 +16,9 @@ TOKEN_OWNER = b'#\xba\'\x03\xc52c\xe8\xd6\xe5"\xdc2 39\xdc\xd8\xee\xe9'
 
 TOKEN_CIRC_KEY = b'in_circulation'
 
-TOKEN_TOTAL_SUPPLY = 100000000 * 100000000  # 10m total supply * 10^8 ( decimals)
+TOKEN_TOTAL_SUPPLY = 100000000 * 100000000  # 100m total supply * 10^8 (decimals)
 
-TOKEN_INITIAL_AMOUNT = 80000000 * 100000000  # 80m to owners * 10^8
-
-AFTER_ROUND_1_AMOUNT = 90000000 * 100000000  # After round 1 of public sale amount (25% bonus)
-
-AFTER_ROUND_2_AMOUNT = 95000000 * 100000000  # After round 2 of public sale amount (10% bonus)
+TOKEN_INITIAL_AMOUNT = 50000000 * 100000000  # 50m to owners * 10^8 
 
 # for now assume 1 dollar per token, and one neo = 100 dollars * 10^8
 TOKENS_PER_NEO = 100 * 100000000
@@ -45,12 +41,7 @@ BLOCK_SALE_END = 2500 + 172800
 
 KYC_KEY = b'kyc_ok'
 
-ROUND_1_KEY = b'r1'
-
-ROUND_2_KEY = b'r2'
-
-ROUND_3_KEY = b'r3'
-
+LIMITED_ROUND_KEY = b'r1'
 
 def crowdsale_available_amount(ctx):
     """

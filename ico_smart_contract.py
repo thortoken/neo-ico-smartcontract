@@ -1,9 +1,11 @@
 """
-Thor ICO Smart Contract
+Thor Token ICO Smart Contract
 ===================================
 
 Author: Leo Rong
 Email: leo@thortoken.com
+
+Date: March 8, 2018
 
 Based on thor NEP-5 ICO template by Thomas Saunders
 
@@ -78,7 +80,7 @@ def Main(operation, args):
             return crowdsale_available_amount(ctx)
 
         elif operation == 'airdrop':
-            return airdrop_tokens(ctx, amount, address)
+            return airdrop_tokens(ctx, args)
 
         elif operation == 'get_attachments':
             return get_asset_attachments()
