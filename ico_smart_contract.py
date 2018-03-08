@@ -65,6 +65,9 @@ def Main(operation, args):
         elif operation == 'circulation':
             return get_circulation(ctx)
 
+        elif operation == 'ico_sold':
+            return get_ico_token_sold(ctx)
+
         elif operation == 'pause_ico':
             return change_ico_status(False)
 
@@ -116,6 +119,10 @@ def deploy():
         Put(ctx, 'initialized', 1)
         Put(ctx, TOKEN_OWNER, TOKEN_INITIAL_AMOUNT)
         Put(ctx, ICO_IN_PROGRESS_KEY, True)
+
+        if not add_to_ico_token_sold(ctx, TOKEN_INITIAL_AMOUNT):
+            return False
+
         return add_to_circulation(ctx, TOKEN_INITIAL_AMOUNT)
 
     return False

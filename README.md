@@ -51,7 +51,7 @@ This will compile your template to `ico_smart_contract.avm`
 In neo-python prompt:
 
 ```neo-python
-import contract path_to/neo-ico-smartcontract/ico_smart_contract.avm 070202 02 True True
+import contract path_to/neo-ico-smartcontract/ico_smart_contract.avm 070202 02 True False
 ```
 
 #### Deploy (Owner Check)
@@ -60,6 +60,24 @@ In neo-python prompt:
 
 ```neo-python
 testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f deploy []
+```
+
+#### Pause and Restart (Owner Check)
+
+In neo-python prompt:
+
+```neo-python
+testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f pause_ico []
+testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f restart_ico []
+```
+
+#### Check circulation and token_sold
+
+In neo-python prompt:
+
+```neo-python
+testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f circulation []
+testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f token_sold []
 ```
 
 #### Register KYC (Owner Check)
@@ -79,7 +97,7 @@ In neo-python prompt:
 testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f mintTokens [] --attach-neo=1
 ```
 
-#### Airdrop - For privatesale (Owner Check)
+#### Airdrop - For privatesale (Owner Check and KYC Check)
 
 In neo-python prompt:
 

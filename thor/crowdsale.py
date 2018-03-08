@@ -96,12 +96,28 @@ def perform_exchange(ctx):
     # if you want to exchange gas instead of neo, use this
     exchanged_tokens += attachments[3] * TOKENS_PER_GAS / 100000000
 
+
+    # Bonus calculation logic
+    current_ico_sold = GET(ctx, ICO_TOKEN_SOLD_KEY)
+
+    bonus = 1
+
+    if current_ico_sold <= AFTER_SECOND_ROUND_AMOUNT:
+        bonus = SECOND_ROUND_BONUS
+
+    if current_ico_sold <= AFTER_LIMITED_ROUND_AMOUNT:
+        bonus = LIMITED_ROUND_BONUS
+
+    exchanged_tokens = exchanged_tokens * bonus
+
+
     # add it to the the exchanged tokens and persist in storage
     new_total = exchanged_tokens + current_balance
     Put(ctx, attachments[1], new_total)
 
-    # update the in circulation amount
-    result = add_to_circulation(ctx, exchanged_tokens)
+    # update the token sold amount and in circulation amount
+    add_to_ico_token_sold(ctx, exchanged_tokens)
+    add_to_circulation(ctx, exchanged_tokens)
 
     # dispatch transfer event
     OnTransfer(attachments[0], attachments[1], exchanged_tokens)
@@ -197,19 +213,30 @@ def calculate_can_exchange(ctx, amount, address, verify_only):
     # check amount in limited round
     if amount <= MAX_EXCHANGE_LIMITED_ROUND:
 
-        # check if they have already exchanged in the limited round
+        # check if they have already exchanged in the limited round and how much
         r1key = concat(address, LIMITED_ROUND_KEY)
-        has_exchanged = Get(ctx, r1key)
+        amount_exchanged  = Get(ctx, r1key)
 
-        # if not, then save the exchange for limited round
-        if not has_exchanged:
+        # if not, then save the amount for this wallet in limited round
+        if not amount_exchanged:
             # note that this method can be invoked during the Verification trigger, so we have the
             # verify_only param to avoid the Storage.Put during the read-only Verification trigger.
             # this works around a "method Neo.Storage.Put not found in ->" error in InteropService.py
             # since Verification is read-only and thus uses a StateReader, not a StateMachine
             if not verify_only:
-                Put(ctx, r1key, True)
+                Put(ctx, r1key, amount)
             return True
+
+        # if so, add new amount of already exchanged amount if it's still within the MAX_EXCHANGE_LIMITED_ROUND
+        else:
+            new_amount = amount_exchanged + amount
+
+            if new_amount <= MAX_EXCHANGE_LIMITED_ROUND:
+
+                if not verify_only:
+                    Put(ctx, r1key, new_amount)
+                return True
+
 
         print("Already contributed in limited round")
         return False
