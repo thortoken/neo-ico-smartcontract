@@ -12,7 +12,7 @@ TOKEN_DECIMALS = 8
 
 # This is the script hash of the address for the owner of the token
 # This can be found in ``neo-python`` with the walet open, use ``wallet`` command
-TOKEN_OWNER = b'#\xba\'\x03\xc52c\xe8\xd6\xe5"\xdc2 39\xdc\xd8\xee\xe9'
+TOKEN_OWNER = b'\xcd\xe5\xd2\xde\xad\xcc\xec\x05"\x9e\xe7\x0c\x0e\xd1\xdf\xf7GaL$'
 
 TOKEN_CIRC_KEY = b'in_circulation'
 
@@ -38,6 +38,8 @@ LIMITED_ROUND_END = 2500 + 5760
 
 # when to end the tokensale - 30 days after the end of limited round
 BLOCK_SALE_END = 2500 + 172800
+
+ICO_IN_PROGRESS_KEY = b'ico_in_progress'
 
 KYC_KEY = b'kyc_ok'
 

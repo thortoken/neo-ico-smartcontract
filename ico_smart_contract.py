@@ -65,10 +65,20 @@ def Main(operation, args):
         elif operation == 'circulation':
             return get_circulation(ctx)
 
+        elif operation == 'pause_ico':
+            return change_ico_status(False)
+
+        elif operation == 'restart_ico':
+            return change_ico_status(True)
+
         # the following are handled by crowdsale
 
         elif operation == 'mintTokens':
-            return perform_exchange(ctx)
+            # Add a check to see if ico is paused manually
+            if Get(ctx, ICO_IN_PROGRESS_KEY):
+                return perform_exchange(ctx)
+
+            return False
 
         elif operation == 'crowdsale_register':
             return kyc_register(ctx, args)
@@ -105,6 +115,21 @@ def deploy():
         # do deploy logic
         Put(ctx, 'initialized', 1)
         Put(ctx, TOKEN_OWNER, TOKEN_INITIAL_AMOUNT)
+        Put(ctx, ICO_IN_PROGRESS_KEY, True)
         return add_to_circulation(ctx, TOKEN_INITIAL_AMOUNT)
 
     return False
+
+def change_ico_status(status):
+    """
+
+    :param status: a boolean to switch ico status to live or paused
+    :return:
+        bool: Whether the operation was successful
+    """
+    if not CheckWitness(TOKEN_OWNER):
+        print("Must be owner to change ico status")
+        return False
+
+    Put(ctx, ICO_IN_PROGRESS_KEY, status)
+    return True
