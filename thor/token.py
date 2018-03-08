@@ -32,13 +32,13 @@ TOKENS_PER_GAS_SECOND_ROUND = 37 * 100000000
 
 # when to start the crowdsale
 # To-Do: Update this block time
-BLOCK_SALE_START = 2500
+BLOCK_SALE_START = 2600
 
 # when to end the initial limited round 24 hours
-LIMITED_ROUND_END = 2500 + 5760
+LIMITED_ROUND_END = 2600 + 5760
 
 # when to end the tokensale - 30 days after the end of limited round
-BLOCK_SALE_END = 2500 + 172800
+BLOCK_SALE_END = 2600 + 172800
 
 KYC_KEY = b'kyc_ok'
 

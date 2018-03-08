@@ -60,7 +60,7 @@ import contract path_to/neo-ico-smartcontract/ico_smart_contract.avm 070202 02 T
 In neo-python prompt:
 
 ```neo-python
-testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f deploy []
+testinvoke {contract_hash} deploy []
 ```
 
 #### Pause and Restart (Owner Check)
@@ -68,8 +68,8 @@ testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f deploy []
 In neo-python prompt:
 
 ```neo-python
-testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f pause_ico []
-testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f restart_ico []
+testinvoke {contract_hash} pause_ico []
+testinvoke {contract_hash} restart_ico []
 ```
 
 #### Check circulation and token_sold
@@ -77,8 +77,8 @@ testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f restart_ico []
 In neo-python prompt:
 
 ```neo-python
-testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f circulation []
-testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f token_sold []
+testinvoke {contract_hash} circulation []
+testinvoke {contract_hash} token_sold []
 ```
 
 #### Register KYC (Owner Check)
@@ -86,8 +86,8 @@ testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f token_sold []
 In neo-python prompt:
 
 ```neo-python
-testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f crowdsale_register ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y']
-testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f crowdsale_status ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y']
+testinvoke {contract_hash} crowdsale_register ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y']
+testinvoke {contract_hash} crowdsale_status ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y']
 ```
 
 #### Mint Token (KYC Check)
@@ -95,7 +95,7 @@ testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f crowdsale_status ['AK2nJJp
 In neo-python prompt:
 
 ```neo-python
-testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f mintTokens [] --attach-neo=1
+testinvoke {contract_hash} mintTokens [] --attach-neo=1
 ```
 
 #### Airdrop - For privatesale (Owner Check and KYC Check)
@@ -103,7 +103,7 @@ testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f mintTokens [] --attach-neo
 In neo-python prompt:
 
 ```neo-python
-testinvoke 0xd95fd65c6019b63ff6c9a8d7a26ff5171e57b69f airdrop ['AaYZVFjjxae4tiXjCepwp7tEAhn4SwF9Nu', 1000]
+testinvoke {contract_hash} airdrop ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y', 1000]
 ```
 
 #### Current Status: In Testing
