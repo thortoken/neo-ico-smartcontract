@@ -90,26 +90,25 @@ def perform_exchange(ctx):
     # lookup the current balance of the address
     current_balance = Get(ctx, attachments[1])
 
-    # calculate the amount of tokens the attached neo will earn
-    exchanged_tokens = attachments[2] * TOKENS_PER_NEO / 100000000
-
-    # if you want to exchange gas instead of neo, use this
-    exchanged_tokens += attachments[3] * TOKENS_PER_GAS / 100000000
-
-
     # Bonus calculation logic
-    current_ico_sold = GET(ctx, ICO_TOKEN_SOLD_KEY)
+    current_ico_sold = Get(ctx, ICO_TOKEN_SOLD_KEY)
 
-    bonus = 1
+    token_to_neo = TOKENS_PER_NEO
+    token_to_gas = TOKENS_PER_GAS
 
     if current_ico_sold <= AFTER_SECOND_ROUND_AMOUNT:
-        bonus = SECOND_ROUND_BONUS
+        token_to_neo = TOKENS_PER_NEO_LIMITED_ROUND
+        token_to_gas = TOKENS_PER_GAS_LIMITED_ROUND
 
     if current_ico_sold <= AFTER_LIMITED_ROUND_AMOUNT:
-        bonus = LIMITED_ROUND_BONUS
+        token_to_neo = TOKENS_PER_NEO_SECOND_ROUND
+        token_to_gas = TOKENS_PER_GAS_SECOND_ROUND
 
-    exchanged_tokens = exchanged_tokens * bonus
+    # calculate the amount of tokens the attached neo will earn
+    exchanged_tokens = attachments[2] * token_to_neo / 100000000
 
+    # if you want to exchange gas instead of neo, use this
+    exchanged_tokens += attachments[3] * token_to_gas / 100000000
 
     # add it to the the exchanged tokens and persist in storage
     new_total = exchanged_tokens + current_balance

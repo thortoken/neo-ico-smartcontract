@@ -21,10 +21,14 @@ TOKEN_TOTAL_SUPPLY = 100000000 * 100000000  # 100m total supply * 10^8 (decimals
 TOKEN_INITIAL_AMOUNT = 0 * 100000000  # 0M to owners * 10^8 
 
 # for now assume 1 dollar per token, and one neo = 100 dollars * 10^8
-TOKENS_PER_NEO = 100 * 100000000
+TOKENS_PER_NEO = 110 * 100000000
+TOKENS_PER_NEO_LIMITED_ROUND = 137 * 100000000
+TOKENS_PER_NEO_SECOND_ROUND = 121 * 100000000
 
 # for now assume 1 dollar per token, and one gas = 35 dollars * 10^8
-TOKENS_PER_GAS = 30 * 100000000
+TOKENS_PER_GAS = 33 * 100000000
+TOKENS_PER_GAS_LIMITED_ROUND = 41 * 100000000
+TOKENS_PER_GAS_SECOND_ROUND = 37 * 100000000
 
 # when to start the crowdsale
 # To-Do: Update this block time
@@ -37,6 +41,8 @@ LIMITED_ROUND_END = 2500 + 5760
 BLOCK_SALE_END = 2500 + 172800
 
 KYC_KEY = b'kyc_ok'
+
+ICO_IN_PROGRESS_KEY = b'ico_in_progress'
 
 ICO_TOKEN_SOLD_KEY = b'token_sold_in_ico'
 
