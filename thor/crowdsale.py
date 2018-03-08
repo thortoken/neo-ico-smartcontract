@@ -262,7 +262,7 @@ def airdrop_tokens(ctx, args):
             # First parameter is address
             address = args[0]
             # Second parameter is amount
-            amount = args[1]
+            amount = args[1] * 100000000
 
             current_in_circulation = Get(ctx, TOKEN_CIRC_KEY)
 
@@ -272,17 +272,17 @@ def airdrop_tokens(ctx, args):
                 print("Amount in list would overflow the total supply")
                 return False
 
-            current_balance = Get(ctx, address)
+            current_balance = Get(ctx, TOKEN_OWNER)
 
             new_total = amount + current_balance
 
-            Put(ctx, address, new_total)
+            Put(ctx, TOKEN_OWNER, new_total)
 
             # update the in circulation amount
-            result = add_to_circulation(ctx, amount)
+            result = add_to_circulation(ctx, TOKEN_OWNER)
 
             # dispatch transfer event
-            OnTransfer(TOKEN_OWNER, address, amount)
+            OnTransfer(TOKEN_OWNER, TOKEN_OWNER, amount)
 
             return True
 
