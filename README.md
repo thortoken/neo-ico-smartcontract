@@ -26,8 +26,8 @@ source venv/bin/activate
 or to explicitly install Python 3.6 via
 
 ```shell
-    virtualenv -p /usr/local/bin/python3.6 venv
-    source venv/bin/activate
+virtualenv -p /usr/local/bin/python3.6 venv
+source venv/bin/activate
 ```
 
 Then install the requirements via
@@ -52,7 +52,7 @@ This will compile your template to `ico_smart_contract.avm`
 In neo-python prompt:
 
 ```neo-python
-import contract path_to/neo-ico-smartcontract/ico_smart_contract.avm 070202 02 True False
+import contract ../neo-ico-smartcontract/ico_smart_contract.avm 070202 02 True False
 ```
 
 #### Deploy (Owner Check)
@@ -106,6 +106,7 @@ In neo-python prompt:
 testinvoke {contract_hash} airdrop ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y', 1000]
 ```
 
-#### Current Status: In Testing
+#### Current Status: Live on Testnet - Token Hash: 367a4e992f30295863ffed257b85c95179113e10
 
-Thor Token team is at the final testing stage of this ICO smart contract. Contract is set to by published on the Testnet 
+Thor Token team has publish the token sale onto the Testnet.
+

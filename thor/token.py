@@ -12,7 +12,7 @@ TOKEN_DECIMALS = 8
 
 # This is the script hash of the address for the owner of the token
 # This can be found in ``neo-python`` with the walet open, use ``wallet`` command
-TOKEN_OWNER = b'#\xba\'\x03\xc52c\xe8\xd6\xe5"\xdc2 39\xdc\xd8\xee\xe9'
+TOKEN_OWNER = b'\xcd\xe5\xd2\xde\xad\xcc\xec\x05"\x9e\xe7\x0c\x0e\xd1\xdf\xf7GaL$'
 
 TOKEN_CIRC_KEY = b'in_circulation'
 
@@ -21,24 +21,29 @@ TOKEN_TOTAL_SUPPLY = 100000000 * 100000000  # 100m total supply * 10^8 (decimals
 TOKEN_INITIAL_AMOUNT = 50000000 * 100000000  # 50M to owners * 10^8 
 
 # for now assume 1 dollar per token, and one neo = 100 dollars * 10^8
-TOKENS_PER_NEO = 110 * 100000000
-TOKENS_PER_NEO_LIMITED_ROUND = 137 * 100000000
-TOKENS_PER_NEO_SECOND_ROUND = 121 * 100000000
+TOKENS_PER_NEO = 100 * 100000000
+TOKENS_PER_NEO_LIMITED_ROUND = 125 * 100000000
+TOKENS_PER_NEO_SECOND_ROUND = 110 * 100000000
 
-# for now assume 1 dollar per token, and one gas = 35 dollars * 10^8
-TOKENS_PER_GAS = 33 * 100000000
-TOKENS_PER_GAS_LIMITED_ROUND = 41 * 100000000
-TOKENS_PER_GAS_SECOND_ROUND = 37 * 100000000
+# for now assume 1 dollar per token, and one gas = 30 dollars * 10^8
+TOKENS_PER_GAS = 30 * 100000000
+TOKENS_PER_GAS_LIMITED_ROUND = 38 * 100000000
+TOKENS_PER_GAS_SECOND_ROUND = 33 * 100000000
 
-# when to start the crowdsale
-# To-Do: Update this block time
-BLOCK_SALE_START = 2100
+# when to start the crowdsale (About 100 blocks before the actual starting time)
+# BLOCK_SALE_START = 2012000 # mainnet
+BLOCK_SALE_START = 1236562 # testnet
+# BLOCK_SALE_START = 1 # privnet
 
-# when to end the initial limited round 24 hours (23 sec/block)
-LIMITED_ROUND_END = 2100 + 4320
+# when to end the initial limited round 24 hours (21 sec/block) 24 * 60 * 60 / 21
+# LIMITED_ROUND_END = 2012000 + 4114 # mainnet
+LIMITED_ROUND_END = 1236562 + 200 # testnet
+# LIMITED_ROUND_END = 2330 # privnet
 
-# when to end the tokensale - 30 days after the end of limited round (23 sec/block)
-BLOCK_SALE_END = 2100 + 129600
+# when to end the tokensale - 30 days after the end of limited round (21 sec/block) 24 * 60 * 60 * 30 / 21
+# BLOCK_SALE_END = 2012000 + 123428 # mainnet
+BLOCK_SALE_END = 1236562 + 123428 # testnet
+# BLOCK_SALE_END = 2400 # privnet
 
 KYC_KEY = b'kyc_ok'
 
@@ -53,14 +58,9 @@ MAX_EXCHANGE_LIMITED_ROUND = 2000 * 100000000
 
 LIMITED_ROUND_KEY = b'r1'
 
-LIMITED_ROUND_BONUS = 1.25
-
 AFTER_LIMITED_ROUND_AMOUNT = 12500000 * 100000000
 
-SECOND_ROUND_BONUS = 1.1
-
 AFTER_SECOND_ROUND_AMOUNT = 18000000 * 100000000
-
 
 def add_to_circulation(ctx, amount):
     """

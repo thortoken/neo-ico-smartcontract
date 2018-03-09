@@ -62,11 +62,11 @@ def Main(operation, args):
         if operation == 'deploy':
             return deploy()
 
-        elif operation == 'pause_ico':
-            return change_ico_status(False)
+        # elif operation == 'pause_ico':
+        #     return change_ico_status(False)
 
-        elif operation == 'restart_ico':
-            return change_ico_status(True)
+        # elif operation == 'start_ico':
+        #     return change_ico_status(True)
 
         elif operation == 'circulation':
             return get_circulation(ctx)
@@ -111,7 +111,9 @@ def deploy():
         # do deploy logic
         Put(ctx, 'initialized', 1)
         Put(ctx, TOKEN_OWNER, TOKEN_INITIAL_AMOUNT)
-        Put(ctx, ICO_IN_PROGRESS_KEY, True)
+
+        # Default to false - manually flip the switch
+        Put(ctx, ICO_IN_PROGRESS_KEY, False) 
 
         result = add_to_ico_token_sold(ctx, 0)
         result = add_to_circulation(ctx, TOKEN_INITIAL_AMOUNT)
@@ -120,16 +122,16 @@ def deploy():
 
     return False
 
-def change_ico_status(status):
-    """
+# def change_ico_status(status):
+#     """
 
-    :param status: a boolean to switch ico status to live or paused
-    :return:
-        bool: Whether the operation was successful
-    """
-    if not CheckWitness(TOKEN_OWNER):
-        print("Must be owner to change ico status")
-        return False
+#     :param status: a boolean to switch ico status to live or paused
+#     :return:
+#         bool: Whether the operation was successful
+#     """
+#     if not CheckWitness(TOKEN_OWNER):
+#         print("Must be owner to change ico status")
+#         return False
 
-    Put(ctx, ICO_IN_PROGRESS_KEY, status)
-    return True
+#     Put(ctx, ICO_IN_PROGRESS_KEY, status)
+#     return True

@@ -261,10 +261,10 @@ def drop_tokens(ctx, args):
             address = args[0]
 
             # Check address kyc status
-            kyc_storage_key = concat(KYC_KEY, address)
+            # kyc_storage_key = concat(KYC_KEY, address)
 
-            if not Get(ctx, kyc_storage_key):
-                return False
+            # if not Get(ctx, kyc_storage_key):
+            #     return False
 
             # Second parameter is amount
             amount = args[1] * 100000000
