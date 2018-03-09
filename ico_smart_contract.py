@@ -62,17 +62,17 @@ def Main(operation, args):
         if operation == 'deploy':
             return deploy()
 
-        elif operation == 'circulation':
-            return get_circulation(ctx)
-
-        elif operation == 'ico_sold':
-            return get_ico_token_sold(ctx)
-
         elif operation == 'pause_ico':
             return change_ico_status(False)
 
         elif operation == 'restart_ico':
             return change_ico_status(True)
+
+        elif operation == 'circulation':
+            return get_circulation(ctx)
+
+        elif operation == 'ico_sold':
+            return get_ico_token_sold(ctx)
 
         # the following are handled by crowdsale
 
@@ -80,7 +80,6 @@ def Main(operation, args):
             # Add a check to see if ico is paused manually
             if Get(ctx, ICO_IN_PROGRESS_KEY):
                 return perform_exchange(ctx)
-
             return False
 
         elif operation == 'crowdsale_register':
@@ -89,14 +88,8 @@ def Main(operation, args):
         elif operation == 'crowdsale_status':
             return kyc_status(ctx, args)
 
-        elif operation == 'crowdsale_available':
-            return crowdsale_available_amount(ctx)
-
         elif operation == 'airdrop':
-            return airdrop_tokens(ctx, args)
-
-        elif operation == 'get_attachments':
-            return get_asset_attachments()
+            return drop_tokens(ctx, args)
 
         return 'unknown operation'
 

@@ -1,5 +1,5 @@
 from boa.interop.Neo.Blockchain import GetHeight
-from boa.interop.Neo.Runtime import CheckWitness
+from boa.interop.Neo.Runtime import CheckWitness, Notify
 from boa.interop.Neo.Action import RegisterAction
 from boa.interop.Neo.Storage import Get, Put
 from boa.builtins import concat
@@ -242,9 +242,9 @@ def calculate_can_exchange(ctx, amount, address, verify_only):
 
     print("More than limited round max")
     return False
-    
 
-def airdrop_tokens(ctx, args):
+
+def drop_tokens(ctx, args):
     """
 
     Airdrop Token for privatesale token buyers
@@ -256,39 +256,41 @@ def airdrop_tokens(ctx, args):
     """
     if CheckWitness(TOKEN_OWNER):
 
-        print("Is Owner")
-
         if len(args) == 2:
 
-            # First parameter is address
             address = args[0]
+
+            # Check address kyc status
+            kyc_storage_key = concat(KYC_KEY, address)
+
+            if not Get(ctx, kyc_storage_key):
+                return False
+
             # Second parameter is amount
             amount = args[1] * 100000000
 
             current_in_circulation = Get(ctx, TOKEN_CIRC_KEY)
 
-            new_amount = current_in_circulation + amount 
+            new_amount = current_in_circulation + amount
 
             if new_amount > TOKEN_TOTAL_SUPPLY:
                 print("Amount in list would overflow the total supply")
                 return False
 
-            current_balance = Get(ctx, TOKEN_OWNER)
+            current_balance = Get(ctx, address)
 
             new_total = amount + current_balance
 
-            Put(ctx, TOKEN_OWNER, new_total)
+            Put(ctx, address, new_total)
 
             # update the in circulation amount
-            result = add_to_circulation(ctx, TOKEN_OWNER)
+            result = add_to_circulation(ctx, amount)
 
             # dispatch transfer event
-            OnTransfer(TOKEN_OWNER, TOKEN_OWNER, amount)
+            OnTransfer(TOKEN_OWNER, address, amount)
 
             return True
 
         return False
 
-
-    print("Must be owner to airdrop tokens")
     return False

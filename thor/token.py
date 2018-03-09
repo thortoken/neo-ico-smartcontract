@@ -61,18 +61,6 @@ SECOND_ROUND_BONUS = 1.1
 
 AFTER_SECOND_ROUND_AMOUNT = 18000000 * 100000000
 
-def crowdsale_available_amount(ctx):
-    """
-
-    :return: int The amount of tokens left for sale in the crowdsale
-    """
-
-    in_circ = Get(ctx, TOKEN_CIRC_KEY)
-
-    available = TOKEN_TOTAL_SUPPLY - in_circ
-
-    return available
-
 
 def add_to_circulation(ctx, amount):
     """
@@ -91,11 +79,17 @@ def add_to_circulation(ctx, amount):
 def get_circulation(ctx):
     """
     Get the total amount of tokens in circulation
+    The extra addition is a workaround to get the correct numerical value printed
 
     :return:
         int: Total amount in circulation
     """
     in_circ = Get(ctx, TOKEN_CIRC_KEY)
+
+    available = TOKEN_TOTAL_SUPPLY - in_circ
+
+    in_circ = TOKEN_TOTAL_SUPPLY - available
+
     return in_circ
 
 
@@ -115,9 +109,15 @@ def add_to_ico_token_sold(ctx, amount):
 def get_ico_token_sold(ctx):
     """
     Get the total amount of tokens in ico_token_sold
+    The extra addition is a workaround to get the correct numerical value printed
 
     :return:
         int: Total amount in ico_token_sold
     """
     current_sold = Get(ctx, ICO_TOKEN_SOLD_KEY)
+
+    available = TOKEN_TOTAL_SUPPLY - current_sold
+
+    current_sold = TOKEN_TOTAL_SUPPLY - available
+
     return current_sold
