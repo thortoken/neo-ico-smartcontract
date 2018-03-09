@@ -242,6 +242,7 @@ def calculate_can_exchange(ctx, amount, address, verify_only):
 
     print("More than limited round max")
     return False
+    
 
 def airdrop_tokens(ctx, args):
     """

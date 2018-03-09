@@ -92,7 +92,7 @@ def Main(operation, args):
         elif operation == 'crowdsale_available':
             return crowdsale_available_amount(ctx)
 
-        elif operation == 'airdrop_tokens':
+        elif operation == 'airdrop':
             return airdrop_tokens(ctx, args)
 
         elif operation == 'get_attachments':
