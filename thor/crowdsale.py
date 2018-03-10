@@ -28,7 +28,6 @@ def kyc_register(ctx, args):
 
         for address in args:
 
-
             if len(address) == 20:
 
                 print("Saving address to kyc")

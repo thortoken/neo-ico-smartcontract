@@ -12,7 +12,8 @@ TOKEN_DECIMALS = 8
 
 # This is the script hash of the address for the owner of the token
 # This can be found in ``neo-python`` with the walet open, use ``wallet`` command
-TOKEN_OWNER = b'WN\x03\xe5L\xb4PD\x0b\xaa)\xa0\xfb7\xcfP\xa0\xc7`\xf4'
+TOKEN_OWNER = b'\xf8\x8c\x8d\x8e\xd7S\xf5Er) \xde\xb2\xed\xeel\x17\x9f=Y' # MainNet
+# TOKEN_OWNER = b'#\xba\'\x03\xc52c\xe8\xd6\xe5"\xdc2 39\xdc\xd8\xee\xe9' #Privnet
 
 TOKEN_CIRC_KEY = b'in_circulation'
 
@@ -20,28 +21,28 @@ TOKEN_TOTAL_SUPPLY = 100000000 * 100000000  # 100m total supply * 10^8 (decimals
 
 TOKEN_INITIAL_AMOUNT = 50000000 * 100000000  # 50M to owner
 
-# for now assume 1 dollar per token, and one neo = 100 dollars * 10^8
-TOKENS_PER_NEO = 100 * 100000000
-TOKENS_PER_NEO_LIMITED_ROUND = 125 * 100000000
-TOKENS_PER_NEO_SECOND_ROUND = 110 * 100000000
+# for now assume 1 dollar per token, and one neo = 120 dollars * 10^8
+TOKENS_PER_NEO = 120 * 100000000
+TOKENS_PER_NEO_LIMITED_ROUND = 150 * 100000000
+TOKENS_PER_NEO_SECOND_ROUND = 132 * 100000000
 
 # for now assume 1 dollar per token, and one gas = 30 dollars * 10^8
-TOKENS_PER_GAS = 30 * 100000000
-TOKENS_PER_GAS_LIMITED_ROUND = 38 * 100000000
-TOKENS_PER_GAS_SECOND_ROUND = 33 * 100000000
+TOKENS_PER_GAS = 35 * 100000000
+TOKENS_PER_GAS_LIMITED_ROUND = 44 * 100000000
+TOKENS_PER_GAS_SECOND_ROUND = 38 * 100000000
 
-# when to start the crowdsale (About 100 blocks before the actual starting time)
-# BLOCK_SALE_START = 2012000 # mainnet
+# when to start the crowdsale
+# BLOCK_SALE_START = 2011901 # mainnet  2011901
 BLOCK_SALE_START = 1236562 # testnet
 # BLOCK_SALE_START = 1 # privnet
 
-# when to end the initial limited round 24 hours (21 sec/block) 24 * 60 * 60 / 21
-# LIMITED_ROUND_END = 2012000 + 4114 # mainnet
+# when to end the initial limited round 24 hours (25 sec/block) 24 * 60 * 60 / 25
+# LIMITED_ROUND_END = 2011901 + 3456 # mainnet
 LIMITED_ROUND_END = 1236562 + 200 # testnet
 # LIMITED_ROUND_END = 2330 # privnet
 
-# when to end the tokensale - 30 days after the end of limited round (21 sec/block) 24 * 60 * 60 * 30 / 21
-# BLOCK_SALE_END = 2012000 + 123428 # mainnet
+# when to end the tokensale - 30 days after the end of limited round (21 sec/block) 24 * 60 * 60 * 30 / 25
+# BLOCK_SALE_END = 2011901 + 103680 # mainnet
 BLOCK_SALE_END = 1236562 + 123428 # testnet
 # BLOCK_SALE_END = 2400 # privnet
 

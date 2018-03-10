@@ -45,8 +45,7 @@ def Main(operation, args):
 
         # If owner, proceed
         if is_owner:
-
-            return True
+            return is_owner
 
         # Otherwise, we need to lookup the assets and determine
         # If attachments of assets is ok
