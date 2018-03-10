@@ -99,7 +99,7 @@ In neo-python prompt:
 testinvoke {contract_hash} airdrop ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y', 1000]
 ```
 
-#### Current Status: Live on Testnet - Token Hash: ed879b9fbacb07ead25871062f567879621239cb
+#### Current Status: Live on Testnet - Token Hash: d4ba7127a8b7e121dcc003883207d77d7e10062d
 
 Thor Token team has published the token sale smart contract onto Testnet for final stage of testing.
 
