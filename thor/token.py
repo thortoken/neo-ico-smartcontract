@@ -12,7 +12,7 @@ TOKEN_DECIMALS = 8
 
 # This is the script hash of the address for the owner of the token
 # This can be found in ``neo-python`` with the walet open, use ``wallet`` command
-TOKEN_OWNER = b'\xa65\x9arR\xd4\x1f\xfe\xdb\xec\x11\xa7\xf7$:c=>\x15l'
+TOKEN_OWNER = b'WN\x03\xe5L\xb4PD\x0b\xaa)\xa0\xfb7\xcfP\xa0\xc7`\xf4'
 
 TOKEN_CIRC_KEY = b'in_circulation'
 
