@@ -47,8 +47,6 @@ BLOCK_SALE_END = 1236562 + 123428 # testnet
 
 KYC_KEY = b'kyc_ok'
 
-ICO_IN_PROGRESS_KEY = b'ico_in_progress'
-
 ICO_TOKEN_SOLD_KEY = b'token_sold_in_ico'
 
 # maximum amount you can mint in the limited round 2000 tokens per person ($1/token)

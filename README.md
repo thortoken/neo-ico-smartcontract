@@ -63,15 +63,6 @@ In neo-python prompt:
 testinvoke {contract_hash} deploy []
 ```
 
-#### Pause and Restart (Owner Check)
-
-In neo-python prompt:
-
-```neo-python
-testinvoke {contract_hash} pause_ico []
-testinvoke {contract_hash} start_ico []
-```
-
 #### Check circulation and token_sold
 
 In neo-python prompt:
@@ -106,7 +97,7 @@ In neo-python prompt:
 testinvoke {contract_hash} airdrop ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y', 1000]
 ```
 
-#### Current Status: Live on Testnet - Token Hash: 367a4e992f30295863ffed257b85c95179113e10
+#### Current Status: Live on Testnet - Token Hash: ed879b9fbacb07ead25871062f567879621239cb
 
-Thor Token team has publish the token sale onto the Testnet for testing
+Thor Token team has published the token sale smart contract onto Testnet for final stage of testing.
 

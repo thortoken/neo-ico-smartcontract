@@ -71,10 +71,7 @@ def Main(operation, args):
         # the following are handled by crowdsale
 
         elif operation == 'mintTokens':
-            # Add a check to see if ico is paused manually
-            if Get(ctx, ICO_IN_PROGRESS_KEY):
-                return perform_exchange(ctx)
-            return False
+            return perform_exchange(ctx)    
 
         elif operation == 'crowdsale_register':
             return kyc_register(ctx, args)
@@ -84,15 +81,6 @@ def Main(operation, args):
 
         elif operation == 'airdrop':
             return drop_tokens(ctx, args)
-
-        elif operation == 'pause_ico':
-            return change_ico_status(False)
-
-        elif operation == 'start_ico':
-            return change_ico_status(True)
-
-        elif operation == 'thor_hammer':
-            return True
 
         return 'unknown operation'
 
@@ -115,26 +103,9 @@ def deploy():
         Put(ctx, 'initialized', 1)
         Put(ctx, TOKEN_OWNER, TOKEN_INITIAL_AMOUNT)
 
-        # Default to false - manually flip the switch
-        Put(ctx, ICO_IN_PROGRESS_KEY, True) 
-
         result = add_to_ico_token_sold(ctx, 0)
         result = add_to_circulation(ctx, TOKEN_INITIAL_AMOUNT)
 
         return True
 
     return False
-
-def change_ico_status(status):
-    """
-
-    :param status: a boolean to switch ico status to live or paused
-    :return:
-        bool: Whether the operation was successful
-    """
-    if not CheckWitness(TOKEN_OWNER):
-        print("Must be owner to change ico status")
-        return False
-
-    Put(ctx, ICO_IN_PROGRESS_KEY, status)
-    return True
