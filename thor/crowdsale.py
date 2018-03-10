@@ -262,7 +262,7 @@ def drop_tokens(ctx, args):
 
             # Check address kyc status
             kyc_storage_key = concat(KYC_KEY, address)
-            
+
             if not Get(ctx, kyc_storage_key):
 
                 print("Not KYC approved")
@@ -286,7 +286,6 @@ def drop_tokens(ctx, args):
             Put(ctx, address, new_total)
 
             # update the in circulation amount
-            result = add_to_ico_token_sold(ctx, exchanged_tokens)
             result = add_to_circulation(ctx, amount)
 
             # dispatch transfer event
