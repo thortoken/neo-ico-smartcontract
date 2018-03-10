@@ -69,7 +69,7 @@ In neo-python prompt:
 
 ```neo-python
 testinvoke {contract_hash} pause_ico []
-testinvoke {contract_hash} restart_ico []
+testinvoke {contract_hash} start_ico []
 ```
 
 #### Check circulation and token_sold
@@ -108,5 +108,5 @@ testinvoke {contract_hash} airdrop ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y', 1000]
 
 #### Current Status: Live on Testnet - Token Hash: 367a4e992f30295863ffed257b85c95179113e10
 
-Thor Token team has publish the token sale onto the Testnet.
+Thor Token team has publish the token sale onto the Testnet for testing
 

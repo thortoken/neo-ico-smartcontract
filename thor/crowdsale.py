@@ -96,11 +96,11 @@ def perform_exchange(ctx):
     token_to_neo = TOKENS_PER_NEO
     token_to_gas = TOKENS_PER_GAS
 
-    if current_ico_sold <= AFTER_SECOND_ROUND_AMOUNT:
+    if current_ico_sold < AFTER_SECOND_ROUND_AMOUNT:
         token_to_neo = TOKENS_PER_NEO_SECOND_ROUND
         token_to_gas = TOKENS_PER_GAS_SECOND_ROUND
 
-    if current_ico_sold <= AFTER_LIMITED_ROUND_AMOUNT:
+    if current_ico_sold < AFTER_LIMITED_ROUND_AMOUNT:
         token_to_neo = TOKENS_PER_NEO_LIMITED_ROUND
         token_to_gas = TOKENS_PER_GAS_LIMITED_ROUND
 
@@ -261,10 +261,12 @@ def drop_tokens(ctx, args):
             address = args[0]
 
             # Check address kyc status
-            # kyc_storage_key = concat(KYC_KEY, address)
+            kyc_storage_key = concat(KYC_KEY, address)
+            
+            if not Get(ctx, kyc_storage_key):
 
-            # if not Get(ctx, kyc_storage_key):
-            #     return False
+                print("Not KYC approved")
+                return False
 
             # Second parameter is amount
             amount = args[1] * 100000000
@@ -284,6 +286,7 @@ def drop_tokens(ctx, args):
             Put(ctx, address, new_total)
 
             # update the in circulation amount
+            result = add_to_ico_token_sold(ctx, exchanged_tokens)
             result = add_to_circulation(ctx, amount)
 
             # dispatch transfer event

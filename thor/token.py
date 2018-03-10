@@ -12,13 +12,13 @@ TOKEN_DECIMALS = 8
 
 # This is the script hash of the address for the owner of the token
 # This can be found in ``neo-python`` with the walet open, use ``wallet`` command
-TOKEN_OWNER = b'\xcd\xe5\xd2\xde\xad\xcc\xec\x05"\x9e\xe7\x0c\x0e\xd1\xdf\xf7GaL$'
+TOKEN_OWNER = b'\xa65\x9arR\xd4\x1f\xfe\xdb\xec\x11\xa7\xf7$:c=>\x15l'
 
 TOKEN_CIRC_KEY = b'in_circulation'
 
 TOKEN_TOTAL_SUPPLY = 100000000 * 100000000  # 100m total supply * 10^8 (decimals)
 
-TOKEN_INITIAL_AMOUNT = 50000000 * 100000000  # 50M to owners * 10^8 
+TOKEN_INITIAL_AMOUNT = 50000000 * 100000000  # 50M to owner
 
 # for now assume 1 dollar per token, and one neo = 100 dollars * 10^8
 TOKENS_PER_NEO = 100 * 100000000
