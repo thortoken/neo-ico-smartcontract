@@ -53,8 +53,9 @@ This will compile your template to `ico_smart_contract.avm`
 In neo-python prompt:
 
 ```neo-python
-import contract ../neo-ico-smartcontract/ico_smart_contract.avm 070202 02 True False
+import contract ../neo-ico-smartcontract/ico_smart_contract.avm 070202 05 True False
 ```
+note: Do we need two arrays in the input 070202? Neo smart contract uses '0710 05 True False'  
 
 #### Deploy (Owner Check)
 
