@@ -5,7 +5,8 @@
 </p>
 <h3 align="center">Thor ICO Smart Contract</h3>
 <p align="center">Thor Token Offical ICO Smart Contract.</p>
-<p align="center">Author: Leo Rong <a href="mailto:leo@thortoken.com" target="_top">leo@thortoken.com</a></p>
+<p align="center">Author: Leo Rong, Lead Software Developer @ Thor Token</p>
+<p align="center"><a href="mailto:leo@thortoken.com" target="_top">leo@thortoken.com</a></p>
 <p align="center">Based of Neo ICO Template by Thomas Saunders of the NEX team - https://github.com/neonexchange/neo-ico-template</p>
 <hr/>
 
