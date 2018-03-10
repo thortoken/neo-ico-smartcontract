@@ -12,8 +12,8 @@ TOKEN_DECIMALS = 8
 
 # This is the script hash of the address for the owner of the token
 # This can be found in ``neo-python`` with the walet open, use ``wallet`` command
-TOKEN_OWNER = b'\xf8\x8c\x8d\x8e\xd7S\xf5Er) \xde\xb2\xed\xeel\x17\x9f=Y' # MainNet
-# TOKEN_OWNER = b'#\xba\'\x03\xc52c\xe8\xd6\xe5"\xdc2 39\xdc\xd8\xee\xe9' #Privnet
+TOKEN_OWNER = b'\xdd]\xb5\xdb\xb2\x1b\xf7\xff\r-\xfc\xe7\x1a\xf3,n\xe9\x82\x87\xf6' # MainNet
+# TOKEN_OWNER = b'\xf8\x8c\x8d\x8e\xd7S\xf5Er) \xde\xb2\xed\xeel\x17\x9f=Y' # TestNet
 
 TOKEN_CIRC_KEY = b'in_circulation'
 
@@ -26,25 +26,25 @@ TOKENS_PER_NEO = 120 * 100000000
 TOKENS_PER_NEO_LIMITED_ROUND = 150 * 100000000
 TOKENS_PER_NEO_SECOND_ROUND = 132 * 100000000
 
-# for now assume 1 dollar per token, and one gas = 30 dollars * 10^8
+# for now assume 1 dollar per token, and one gas = 35 dollars * 10^8
 TOKENS_PER_GAS = 35 * 100000000
 TOKENS_PER_GAS_LIMITED_ROUND = 44 * 100000000
 TOKENS_PER_GAS_SECOND_ROUND = 38 * 100000000
 
 # when to start the crowdsale
-# BLOCK_SALE_START = 2011901 # mainnet  2011901
-BLOCK_SALE_START = 1236562 # testnet
+BLOCK_SALE_START = 2011901 # mainnet
+# BLOCK_SALE_START = 1236562 # testnet
 # BLOCK_SALE_START = 1 # privnet
 
 # when to end the initial limited round 24 hours (25 sec/block) 24 * 60 * 60 / 25
-# LIMITED_ROUND_END = 2011901 + 3456 # mainnet
-LIMITED_ROUND_END = 1236562 + 200 # testnet
+LIMITED_ROUND_END = 2011901 + 3456 # mainnet
+# LIMITED_ROUND_END = 1236562 + 200 # testnet
 # LIMITED_ROUND_END = 2330 # privnet
 
-# when to end the tokensale - 30 days after the end of limited round (21 sec/block) 24 * 60 * 60 * 30 / 25
-# BLOCK_SALE_END = 2011901 + 103680 # mainnet
-BLOCK_SALE_END = 1236562 + 123428 # testnet
-# BLOCK_SALE_END = 2400 # privnet
+# when to end the tokensale - 30 days after the end of limited round (25 sec/block) 24 * 60 * 60 * 30 / 25
+BLOCK_SALE_END = 2011901 + 103680 # mainnet
+# BLOCK_SALE_END = 1236562 + 103680 # testnet
+# BLOCK_SALE_END = 5000 # privnet
 
 KYC_KEY = b'kyc_ok'
 
