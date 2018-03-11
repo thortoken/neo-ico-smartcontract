@@ -10,11 +10,11 @@
 <p align="center">Based of Neo ICO Template by Thomas Saunders of the NEX team - https://github.com/neonexchange/neo-ico-template</p>
 <hr/>
 
-#### Requirements
+### Requirements
 
 Usage requires Python 3.6+
 
-#### Installation
+### Installation
 
 Clone the repository and navigate into the project directory. 
 Make a Python 3 virtual environment and activate it via
@@ -37,7 +37,7 @@ Then install the requirements via
 pip install -r requirements.txt
 ```
 
-#### Compilation
+### Compilation
 
 The template may be compiled as follows
 
@@ -48,16 +48,15 @@ python3 compile.py
 
 This will compile your template to `ico_smart_contract.avm`
 
-#### Import
+### Import
 
 In neo-python prompt:
 
 ```neo-python
 import contract ../neo-ico-smartcontract/ico_smart_contract.avm 0702 05 True False
 ```
-note: Do we need two arrays in the input 070202? Neo smart contract uses '0710 05 True False'  
 
-#### Deploy (Owner Check)
+### Deploy (Owner Check)
 
 In neo-python prompt:
 
@@ -65,7 +64,7 @@ In neo-python prompt:
 testinvoke {contract_hash} deploy []
 ```
 
-#### Check circulation and token_sold
+### Check circulation and token_sold
 
 In neo-python prompt:
 
@@ -74,7 +73,7 @@ testinvoke {contract_hash} circulation []
 testinvoke {contract_hash} token_sold []
 ```
 
-#### Register KYC (Owner Check)
+### Register KYC (Owner Check)
 
 In neo-python prompt:
 
@@ -83,7 +82,7 @@ testinvoke {contract_hash} crowdsale_register ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp
 testinvoke {contract_hash} crowdsale_status ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y']
 ```
 
-#### Mint Token (KYC Check)
+### Mint Token (KYC Check)
 
 In neo-python prompt:
 
@@ -91,7 +90,7 @@ In neo-python prompt:
 testinvoke {contract_hash} mintTokens [] --attach-neo=1
 ```
 
-#### Airdrop - For privatesale (Owner Check and KYC Check)
+### Airdrop - For privatesale (Owner Check and KYC Check)
 
 In neo-python prompt:
 
@@ -99,7 +98,7 @@ In neo-python prompt:
 testinvoke {contract_hash} airdrop ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y', 1000]
 ```
 
-#### Current Status: Live on MainNet (Tokesale starts at Block 2011901)
+### Current Status: Live on MainNet (Tokesale starts at Block 2011901)
 #### Token Hash: 67a5086bac196b67d5fd20745b0dc9db4d2930ed
 
 https://neotracker.io/contract/67a5086bac196b67d5fd20745b0dc9db4d2930ed
