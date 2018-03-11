@@ -99,7 +99,9 @@ In neo-python prompt:
 testinvoke {contract_hash} airdrop ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y', 1000]
 ```
 
-#### Current Status: Live on Testnet - Token Hash: d4ba7127a8b7e121dcc003883207d77d7e10062d
+#### Current Status: Live on MainNet (Tokesale starts at Block 2011901) - Token Hash: 67a5086bac196b67d5fd20745b0dc9db4d2930ed
 
-Thor Token team has published the token sale smart contract onto Testnet for final stage of testing.
+https://neotracker.io/contract/67a5086bac196b67d5fd20745b0dc9db4d2930ed
+
+Thor Token team has deployed the Tokensale Smart Contract onto NEO MainNet!!
 
