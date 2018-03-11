@@ -99,7 +99,8 @@ In neo-python prompt:
 testinvoke {contract_hash} airdrop ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y', 1000]
 ```
 
-#### Current Status: Live on MainNet (Tokesale starts at Block 2011901) - Token Hash: 67a5086bac196b67d5fd20745b0dc9db4d2930ed
+#### Current Status: Live on MainNet (Tokesale starts at Block 2011901)
+#### Token Hash: 67a5086bac196b67d5fd20745b0dc9db4d2930ed
 
 https://neotracker.io/contract/67a5086bac196b67d5fd20745b0dc9db4d2930ed
 
